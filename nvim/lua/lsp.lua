@@ -9,7 +9,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { 'pyright', 'lua_ls' },
+  ensure_installed = { 'pyright', 'lua_ls', 'gopls' },
 })
 
 local lspconfig = require('lspconfig')
@@ -27,7 +27,7 @@ local on_attach = function (client, bufnr)
 
   local bufopts = { noremap = true, slent = true, buffr = bufnr }
   keyset('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  keyset('n', 'gd', vim.lsp.buf.definitio, bufopts)
+  keyset('n', 'gd', vim.lsp.buf.definition, bufopts)
   keyset('n', 'K', vim.lsp.buf.hover, bufopts)
   keyset('n', 'gi', vim.lsp.buf.implementation, bufopts)
   keyset('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
