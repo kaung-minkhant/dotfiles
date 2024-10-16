@@ -23,6 +23,13 @@ keyset('n', '<C-Down>', ':resize +2<CR>', opts)
 keyset('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keyset('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 
+-- turnoff highlight
+keyset('n', '<space><space>', "<cmd>set nohlsearch<CR>", opts)
+
+-- quick close
+keyset('n', "<leader>qq", ":q<CR>", opts)
+-- quick save
+keyset('n', "<C-s>", ":w<CR>", opts)
 
 -------------------
 --- Insert Mode ---
@@ -36,3 +43,7 @@ keyset('i', 'jj', '<Esc>')
 
 keyset('v', '<', '<gv', opts)
 keyset('v', '>', '>gv', opts)
+
+
+-- no op
+keyset({ 'n', 'v' }, '<Space>', '<Nop>', opts)

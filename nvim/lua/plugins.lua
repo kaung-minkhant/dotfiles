@@ -14,9 +14,27 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- sessions
   "tpope/vim-obsession", 
+
+  -- auto-save
+  "pocco81/auto-save.nvim",
   
   -- colorschemes
   "tanvirtin/monokai.nvim",
+
+  -- status line and ui
+  'nvim-lualine/lualine.nvim',
+  "folke/noice.nvim",
+
+  -- debugger
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"}
+  },
+  'theHamsta/nvim-dap-virtual-text',
+  'leoluz/nvim-dap-go',
+
+  -- git
+  'lewis6991/gitsigns.nvim',
 
   -- lsp
   {
