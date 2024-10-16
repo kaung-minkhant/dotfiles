@@ -36,6 +36,16 @@ require("lazy").setup({
   -- git
   'lewis6991/gitsigns.nvim',
 
+  -- Fuzzy finders
+  'nvim-telescope/telescope-symbols.nvim',
+  { 
+    'nvim-telescope/telescope.nvim', 
+    branch = '0.1.x', 
+    dependencies = { 
+      'nvim-lua/plenary.nvim'
+    },
+  },
+
   -- lsp
   {
     "onsails/lspkind.nvim",
