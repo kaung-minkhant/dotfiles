@@ -6,23 +6,20 @@ require('telescope').setup({
     layout_strategy = "horizontal",
     layout_config = {
       preview_width = 0.65,
-      horizontal = {
-        size = {
-          width = "95%",
-          height = "95%",
-        },
-      },
+      width = 0.99,
+      height = 0.99,
     },
     pickers = {
       theme = "dropdown",
     },
-  },
-  mappings = {
-    i = {
-      ['<C-u>'] = false,
-      ['<C-d>'] = false,
-      ["<C-j>"] = require('telescope.actions').move_selection_next,
-      ["<C-k>"] = require('telescope.actions').move_selection_previous,
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+        ["<C-j>"] = require('telescope.actions').preview_scrolling_down,
+        ["<C-k>"] = require('telescope.actions').preview_scrolling_up,
+        ["<C-q>"] = require('telescope.actions').close,
+      },
     },
   },
 })
