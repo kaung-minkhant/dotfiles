@@ -18,8 +18,9 @@ require("lazy").setup({
   -- auto-save
   "pocco81/auto-save.nvim",
   
-  -- colorschemes
+  -- colorschemes and themes
   "tanvirtin/monokai.nvim",
+  { "catppuccin/nvim", as = "catppuccin" },
 
   -- status line and ui
   'nvim-lualine/lualine.nvim',
@@ -46,6 +47,15 @@ require("lazy").setup({
     },
   },
 
+  -- hightlights, edit and navigating code
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+  },
+
   -- lsp
   {
     "onsails/lspkind.nvim",
@@ -55,6 +65,7 @@ require("lazy").setup({
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
+  'j-hui/fidget.nvim',
 
   -- completions
   {

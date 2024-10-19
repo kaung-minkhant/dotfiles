@@ -8,14 +8,18 @@ require('mason').setup({
   }
 })
 
+local servers  = { 'pyright', 'lua_ls', 'gopls' }
+
 require('mason-lspconfig').setup({
-  ensure_installed = { 'pyright', 'lua_ls', 'gopls' },
+  ensure_installed = servers,
 })
 
 local lspconfig = require('lspconfig')
 
 local opts = { noremap = true, silent=true}
 local keyset = vim.keymap.set
+
+-- diagnostic keymaps
 
 keyset('n', '<leader>e', vim.diagnostic.open_float, opts)
 keyset('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -39,12 +43,48 @@ local on_attach = function (client, bufnr)
   keyset('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
   keyset('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   keyset('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  keyset('n', 'gr', vim.lsp.buf.references, bufopts)
+  keyset('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
   keyset('n', '<leader>f', function()
     vim.lsp.buf.format({ async = true })
   end, bufopts)
 end
 
-lspconfig.pylsp.setup({
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
+require('fidget').setup()
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
-})
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = { enable = false },
+    },
+  },
+}
