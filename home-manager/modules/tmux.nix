@@ -5,10 +5,10 @@
     prefix = "M-j";
     baseIndex = 1;
     clock24 = false;
-    disableConfirmationPrompt = false;
+    disableConfirmationPrompt = true;
     escapeTime = 0; # Time in milliseconds for which tmux waits after an escape is input.
     keyMode = "vi";
-    mouse = false;
+    mouse = true;
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.catppuccin;
@@ -61,7 +61,6 @@
           set -g @vim_navigator_mapping_right "C-Right C-l"
           set -g @vim_navigator_mapping_up "C-k"
           set -g @vim_navigator_mapping_down "C-j"
-          set -g @vim_navigator_mapping_down "C-j"
           set -g @vim_navigator_mapping_prev ""
         '';
       }
@@ -72,21 +71,38 @@
     tmuxinator.enable = false;
     newSession = false; # Automatically spawn a session if trying to attach and none are running.
     extraConfig = ''
+      unbind C-b
+
       unbind-key -T copy-mode-vi Space
       unbind-key -T copy-mode-vi 'v'
       unbind-key '"'
       unbind-key %
 
-      bind H previous-window
-      bind L next-window
+      unbind p
+      unbind n
+      bind p previous-window
+      bind n next-window
+
       bind r command-prompt "rename-window %%"
-      bind | split-window
+
       bind s split-window -v -c "#{pane_current_path}"
       bind v split-window -h -c "#{pane_current_path}"
+
+      unbind j
+      unbind k
+      unbind l
+      unbind h
+      bind -r j resize-pane -D 5
+      bind -r k resize-pane -U 5
+      bind -r l resize-pane -R 5
+      bind -r h resize-pane -L 5
+
       set -g display-time 2000
       set -g renumber-windows on
       set -g set-clipboard on
+
       bind -T copy-mode-vi v send -X begin-selection
+
       set -g pane-active-border-style 'fg=magenta,bg=default'
       set -g pane-border-style 'fg=brightblack,bg=default'
     '';

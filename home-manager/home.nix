@@ -14,7 +14,10 @@ let
   dotfiles = dotfilesLocal;
 in
 {
-  imports = [ ./modules/tmux.nix];
+  imports = [ 
+    ./modules/tmux.nix 
+    ./modules/zsh.nix
+  ];
   home.username = username;
   home.homeDirectory = homeDirectory;
 
