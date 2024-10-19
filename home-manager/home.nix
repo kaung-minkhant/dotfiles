@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  username = "kaung-min-khant";
+  username = "kaungminkhant";
   homeDirectory = "/home/${username}";
   relativeHomeDirectory = ../..;
 
@@ -175,12 +175,13 @@ in
     };
     direnv = {
       enable = true;
-      enableBashIntegration = true;
+      enableBashIntegration = false;
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
     bash.enable = false;
     starship = {
-      enable = true;
+      enable = false;
     };
   };
 
@@ -200,7 +201,7 @@ in
     "starship" = {
       source = dotfiles + "/starship.toml";
       target = "/.config/starship.toml";
-      enable = true;
+      enable = false;
     };
     "nvim" = {
       source = dotfiles + "/nvim";
