@@ -103,3 +103,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias hm-switch="home-manager switch --impure"
+alias bbuat="sudo ssh -i ~/work/terrafirma-key.pem ubuntu@10.1.1.101"
+alias bbprod="sudo ssh -i ~/work/terrafirma-key-prod.pem ubuntu@10.1.1.100"
+alias workvpn="sudo openvpn --config ~/work/terrafirma-openvpn.ovpn --auth-user-pass ~/work/cred.conf --auth-nocache"

@@ -28,7 +28,6 @@ in
     # editor
     unstable.neovim
 
-    blesh
 		# version control
     gh
 
@@ -38,14 +37,32 @@ in
 		unzip
 		p7zip
 
-		# utils
+    # i3 related
+    feh ## image viewer / wallpaper setter
+    arandr ## monitor settings
+    pulseaudioFull
+    playerctl
+    lxappearance
+    i3blocks
+    xdotool
+    acpi
+    pavucontrol
+    # xorg.xf86videointel
+
+    # clipboards
+    xclip
+    wl-clipboard
+
+    # downloaders
+    curl
+
+    # build tools
     gcc9 
     glib
-    moreutils
     gnumake
-    wl-clipboard-x11
-    wl-clipboard
-    curl
+
+		# utils
+    moreutils
     neofetch
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
@@ -54,6 +71,7 @@ in
     fzf # A command-line fuzzy finder
 
     # networking tools
+    iw
     mtr # A network diagnostic tool
     iperf3
     dnsutils  # `dig` + `nslookup`
@@ -102,7 +120,7 @@ in
     # '')
 
 
-    # other dependencies
+    # programming
     nodejs_22
     go
   ] ;
@@ -193,6 +211,11 @@ in
       source = dotfiles + "/nvim";
       target = "/.config/nvim";
       recursive = true;
+      enable = true;
+    };
+    "i3blocks" = {
+      source = dotfiles + "/i3/blocks/config";
+      target = "/.config/i3blocks/config";
       enable = true;
     };
     # # You can also set the file content immediately.
