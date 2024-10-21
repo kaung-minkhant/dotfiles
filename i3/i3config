@@ -233,3 +233,6 @@ exec picom
 
 ## default workspaces
 assign [class="Brave-browser"] $ws1
+
+## for nvidia
+force_xinerama yes

@@ -30,6 +30,7 @@ in
 
 		# version control
     gh
+    lazygit
 
     # archives
     zip 
