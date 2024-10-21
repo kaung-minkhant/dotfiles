@@ -124,16 +124,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Browser"
-set $ws2 "2"
-set $ws3 "3"
+set $ws1 "1: Personal"
+set $ws2 "2: Work"
+set $ws3 "3: Social"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10: Browser"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -232,7 +232,7 @@ exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate norm
 exec picom
 
 ## default workspaces
-assign [class="Brave-browser"] $ws1
+assign [class="Brave-browser"] $ws10
 
 ## for nvidia
 force_xinerama yes
