@@ -50,8 +50,8 @@
       {
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = ''
-          set -g @thumbs-command 'tmux set-buffer -- {} && wl-copy {} && tmux display-message \"Copied {}\"'
-          set -g @thumbs-upcase-command 'tmux set-buffer -- {} && wl-copy {} && tmx paste-buffer && tmux display-message \"Copied {}\"'
+          set -g @thumbs-command 'tmux set-buffer -- {} && echo {} | xclip -selection clipboard && tmux display-message \"Copied {}\"'
+          set -g @thumbs-upcase-command 'tmux set-buffer -- {} && echo {} | xclip -selection clipboard && tmx paste-buffer && tmux display-message \"Copied {}\"'
         '';
       }
       {
